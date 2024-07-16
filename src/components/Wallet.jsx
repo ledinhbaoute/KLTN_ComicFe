@@ -220,11 +220,11 @@ const Wallet = () => {
     }
   };
 
-  useEffect(() => {
-    if (paymentUrl) {
-      window.location.href = paymentUrl;
-    }
-  }, [paymentUrl]);
+  // useEffect(() => {
+  //   if (paymentUrl) {
+  //     window.location.href = paymentUrl;
+  //   }
+  // }, [paymentUrl]);
 
   const handleRechargeClick = async () => {
     await createPayment();
