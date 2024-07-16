@@ -212,7 +212,6 @@ const Wallet = () => {
         }
       );
       setPaymentUrl(response.data.data);
-       console.log(response.data.data);
     } catch (error) {
       console.log(error);
       setAlertMessage("Đã có lỗi xảy ra");
@@ -220,11 +219,11 @@ const Wallet = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (paymentUrl) {
-  //     window.location.href = paymentUrl;
-  //   }
-  // }, [paymentUrl]);
+  useEffect(() => {
+    if (paymentUrl) {
+      window.location.href = paymentUrl;
+    }
+  }, [paymentUrl]);
 
   const handleRechargeClick = async () => {
     await createPayment();
