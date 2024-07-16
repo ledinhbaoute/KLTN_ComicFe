@@ -98,7 +98,7 @@ export default function Chatbox({ togglePopup, receiverUserName, setChatList }) 
 
 
   useEffect(() => {
-    const socket = new SockJS(`${API_URL}/ws?token=${token}`);
+    const socket = new SockJS(`https://kltncomicbe-production.up.railway.app/ws?token=${token}`);
     const stompClient = Stomp.over(socket);
     getCurrentUser();
     stompClient.connect({}, () => {
