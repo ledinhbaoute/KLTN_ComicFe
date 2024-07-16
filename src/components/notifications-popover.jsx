@@ -76,7 +76,7 @@ export default function NotificationsPopover() {
   }, [token]);
 
   useEffect(() => {
-    const socket = new SockJS(`http://localhost:8081/ws?token=${token}`);
+    const socket = new SockJS(`${API_URL}/ws?token=${token}`);
     const stompClient = Stomp.over(socket);
     getNotifications();
     stompClient.connect({}, (frame) => {
