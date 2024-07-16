@@ -220,9 +220,10 @@ const Wallet = () => {
   };
 
   useEffect(() => {
-    if (paymentUrl) {
-      window.location.href = paymentUrl;
-    }
+    // if (paymentUrl) {
+    //   window.location.href = paymentUrl;
+    // }
+    console.log(paymentUrl)
   }, [paymentUrl]);
 
   const handleRechargeClick = async () => {
