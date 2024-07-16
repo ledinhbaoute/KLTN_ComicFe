@@ -212,7 +212,7 @@ const Wallet = () => {
         }
       );
       setPaymentUrl(response.data.data);
-      //   console.log(paymentUrl);
+       console.log(paymentUrl);
     } catch (error) {
       console.log(error);
       setAlertMessage("Đã có lỗi xảy ra");
