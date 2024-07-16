@@ -37,7 +37,7 @@ export default function MessagesPopover() {
   const [open, setOpen] = useState(null);
   const token = Cookies.get("access_token");
   useEffect(() => {
-    const socket = new SockJS(`http://localhost:8081/ws?token=${token}`);
+    const socket = new SockJS(`${API_URL}/ws?token=${token}`);
     const stompClient = Stomp.over(socket);
     getCurrentUser();
     stompClient.connect({}, () => {
