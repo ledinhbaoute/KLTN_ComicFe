@@ -1,16 +1,17 @@
 import axios from "axios";
 import API_URL from "../config/config";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Rating } from 'react-simple-star-rating'
 import { checkAuth } from "../security/Authentication";
 import Cookies from 'js-cookie';
 import Scrollbars from "react-custom-scrollbars-2";
 import toast from "react-hot-toast";
 const Review = (props) => {
-    const ratingList = props.ratingList
     const comicId=props.comicId
     const [ratingComment, setRatingComment] = useState("");
     const [ratingScore, setRatingScore] = useState(0)
+    const [ratingList, setRatingList] = useState([])
+    const [updateState,setUpdateState]=useState(false)
     const defaultAvatarUrl = `${process.env.PUBLIC_URL}/images/default-avatar.png`;
 
     const handleTextareaChange = (event) => {
@@ -19,6 +20,22 @@ const Review = (props) => {
     const handleRating = (rate) => {
         setRatingScore(rate)
     }
+    useEffect(() => {
+        const getRatingByComic = async () => {
+            try {
+                if (comicId) {
+                    const response = await axios.get(
+                        `${API_URL}/ratings?comicId=${comicId}`
+                    );
+                    setRatingList(response.data.data);
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getRatingByComic();
+    }, [comicId,updateState]);
     const insertRating = async () => {
         try {
                 await axios.post(
@@ -31,7 +48,7 @@ const Review = (props) => {
                         }
                       }
                 );
-
+                setUpdateState(!updateState)
         } catch (error) {
             console.log(error);
         }
@@ -69,7 +86,7 @@ const Review = (props) => {
             insertRating();
             setRatingScore(0);
             setRatingComment("")
-           
+            event.preventDefault();
         }
     };
 
