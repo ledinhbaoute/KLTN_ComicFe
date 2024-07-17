@@ -15,7 +15,7 @@ const ComicDetailPage = () => {
     const { comicId } = useParams()
     const [comic, setComic] = useState({})
     const [chapterList, setChapterList] = useState([])
-    const [ratingList, setRatingList] = useState([])
+    
 
     useEffect(() => {
         const getComicDetail = async () => {
@@ -56,24 +56,7 @@ const ComicDetailPage = () => {
 
     }, [comicId]);
 
-    useEffect(() => {
-        const getRatingByComic = async () => {
-            try {
-                if (comicId) {
-                    const response = await axios.get(
-                        `${API_URL}/ratings?comicId=${comicId}`
-                    );
-                    setRatingList(response.data.data);
-                }
-
-            } catch (error) {
-                console.log(error);
-            }
-
-
-        };
-        getRatingByComic();
-    }, [comicId]);
+   
 
     const insertHistoryReading = async (chapterId) => {
         try {
@@ -129,7 +112,7 @@ const ComicDetailPage = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-8 col-md-8">
-                            <Review comicId={comicId} ratingList={ratingList} />
+                            <Review comicId={comicId}/>
                         </div>
                         {/* <div className="col-lg-4 col-md-4">
                             <ComicList />
